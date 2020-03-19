@@ -86,17 +86,23 @@ public class ExampleArray extends Thread {
 
     //Метод расчета для первого потока, первая половина массива
     private static void count1(float[] arr1) {
+        long time = System.currentTimeMillis();  //Засекаем время
         for (int i = 0; i < arr1.length; i++) {
             arr1[i] = (float)(arr1[i] * Math.sin(0.2f + i / 5f) * Math.cos(0.2f + i / 5f) * Math.cos(0.4f + i / 2f));
         }
+        //Получили время
+        System.out.println("Первый массив " + (System.currentTimeMillis() - time) + " мсек");
     }
 
     //Метод расчета для второго потока, вторая половина массива.
     //Здесь для правильности вычислений откорректировали формулу,
     // добавив к значению i приращение массива HALF
     private static void count2(float[] arr2) {
+        long time = System.currentTimeMillis();  //Засекаем время
         for (int i = 0; i < arr2.length; i++) {
             arr2[i] = (float)(arr2[i] * Math.sin(0.2f + (i + HALF) / 5f) * Math.cos(0.2f + (i + HALF) / 5f) * Math.cos(0.4f + (i + HALF) / 2f));
         }
+        //Получили время
+        System.out.println("Второй массив " + (System.currentTimeMillis() - time) + " мсек");
     }
 }
